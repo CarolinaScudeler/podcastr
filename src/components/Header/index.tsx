@@ -1,5 +1,5 @@
 import format from "date-fns/format";
-import ptBR from "date-fns/esm/locale/pt-BR/index.js";
+import ptBR from "date-fns/locale/pt-BR";
 
 import logo from "../../../public/logo.svg";
 import Image from "next/image";
@@ -12,7 +12,7 @@ export function Header() {
 
   return (
     <header className={styles.headerContainer}>
-      <Image src={logo} alt="Podcastr" width="" height="" />
+      <Image src={logo} alt="Podcastr" width="163px" height="40px" />
 
       <p>O melhor para você ouvir, sempre</p>
 

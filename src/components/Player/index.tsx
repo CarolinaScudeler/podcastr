@@ -11,7 +11,7 @@ export function Player() {
   return (
     <div className={styles.playerContainer}>
       <header>
-        <Image src={playing} alt="Tocando agora" width="" height="" />
+        <Image src={playing} alt="Tocando agora" width="1px" height="1px" />
         <strong>Tocando agora</strong>
       </header>
 
@@ -30,19 +30,19 @@ export function Player() {
 
         <div className={styles.buttons}>
           <button type="button">
-            <Image src={shuffle} alt="Embaralhar" width="" height="" />
+            <Image src={shuffle} alt="Embaralhar" width="24px" height="24px" />
           </button>
           <button type="button">
-            <Image src={playPrevious} alt="Tocar anterior" width="" height="" />
+            <Image src={playPrevious} alt="Tocar anterior" width="24px" height="24px" />
           </button>
           <button type="button" className={styles.playButton}>
-            <Image src={play} alt="Tocar" width="" height="" />
+            <Image src={play} alt="Tocar" width="40px" height="40px" />
           </button>
           <button type="button">
-            <Image src={playNext} alt="Tocar próxima" width="" height="" />
+            <Image src={playNext} alt="Tocar próxima" width="24px" height="24px" />
           </button>
           <button type="button">
-            <Image src={repeat} alt="Repetir" width="" height="" />
+            <Image src={repeat} alt="Repetir" width="24px" height="24px" />
           </button>
         </div>
       </footer>
