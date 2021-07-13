@@ -33,13 +33,23 @@ export function Player() {
             <Image src={shuffle} alt="Embaralhar" width="24px" height="24px" />
           </button>
           <button type="button">
-            <Image src={playPrevious} alt="Tocar anterior" width="24px" height="24px" />
+            <Image
+              src={playPrevious}
+              alt="Tocar anterior"
+              width="24px"
+              height="24px"
+            />
           </button>
           <button type="button" className={styles.playButton}>
             <Image src={play} alt="Tocar" width="40px" height="40px" />
           </button>
           <button type="button">
-            <Image src={playNext} alt="Tocar próxima" width="24px" height="24px" />
+            <Image
+              src={playNext}
+              alt="Tocar próxima"
+              width="24px"
+              height="24px"
+            />
           </button>
           <button type="button">
             <Image src={repeat} alt="Repetir" width="24px" height="24px" />
