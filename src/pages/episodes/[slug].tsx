@@ -1,12 +1,14 @@
-import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import Image from "next/image";
-import Link from "next/link";
+import { format, parseISO } from "date-fns";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import { api } from "../../services/api";
 import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
 
+import Image from "next/image";
+import Link from "next/link";
+import arrowLeft from "../../../public/arrow-left.svg";
+import play from "../../../public/play.svg";
 import styles from "./episode.module.scss";
 
 type Episode = {
@@ -31,7 +33,13 @@ export default function Episode({ episode }: EpisodeProps) {
       <div className={styles.thumbnailContainer}>
         <Link href="/">
           <button type="button">
-            <img src="/arrow-left.svg" alt="Voltar" />
+            <Image
+              src={arrowLeft}
+              alt="Voltar"
+              width="7px"
+              height="14px"
+              objectFit="cover"
+            />
           </button>
         </Link>
 
@@ -43,7 +51,13 @@ export default function Episode({ episode }: EpisodeProps) {
           objectFit="cover"
         />
         <button type="button">
-          <img src="/play.svg" alt="Tocar episódio" />
+          <Image
+            src={play}
+            alt="Voltar"
+            width="24px"
+            height="24px"
+            objectFit="cover"
+          />
         </button>
       </div>
 
@@ -64,7 +78,13 @@ export default function Episode({ episode }: EpisodeProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [],
+    paths: [
+      {
+        params: {
+          slug: "a-importancia-da-contribuicao-em-open-source",
+        },
+      },
+    ],
     fallback: "blocking",
   };
 };
