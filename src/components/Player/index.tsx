@@ -6,13 +6,20 @@ import playNext from "../../../public/play-next.svg";
 import repeat from "../../../public/repeat.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
+import { useContext } from "react";
+
+import { PlayerContext } from "../../contexts/PlayerContext";
 
 export function Player() {
+  const { episodeList, currentEpisodeIndex } = useContext(PlayerContext);
+
+  const episode = episodeList[currentEpisodeIndex]
+
   return (
     <div className={styles.playerContainer}>
       <header>
-        <Image src={playing} alt="Tocando agora" width="1px" height="1px" />
-        <strong>Tocando agora</strong>
+        <Image src={playing} alt="Tocando agora" width="32px" height="32px" />
+        <strong>Tocando agora {episode?.title}</strong>
       </header>
 
       <div className={styles.emptyPlayer}>
