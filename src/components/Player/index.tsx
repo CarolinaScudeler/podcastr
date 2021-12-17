@@ -1,3 +1,14 @@
+import { useRef, useEffect, useState } from "react";
+
+import { usePlayer } from "../../contexts/PlayerContext";
+import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
+
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+
+import Image from "next/image";
+
+import styles from "./styles.module.scss";
 import iconPlaying from "../../../public/playing.svg";
 import iconShuffle from "../../../public/shuffle.svg";
 import iconPlayPrevious from "../../../public/play-previous.svg";
@@ -5,15 +16,6 @@ import iconPlay from "../../../public/play.svg";
 import iconPause from "../../../public/pause.svg";
 import iconPlayNext from "../../../public/play-next.svg";
 import iconRepeat from "../../../public/repeat.svg";
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import { useRef, useEffect, useState } from "react";
-import Slider from "rc-slider";
-
-import "rc-slider/assets/index.css";
-
-import { usePlayer } from "../../contexts/PlayerContext";
-import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);

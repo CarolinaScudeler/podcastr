@@ -4,14 +4,15 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 import { api } from "../../services/api";
 import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
+import { usePlayer } from "../../contexts/PlayerContext";
 
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+
+import styles from "./episode.module.scss";
 import iconArrowLeft from "../../../public/arrow-left.svg";
 import iconPlay from "../../../public/play.svg";
-import styles from "./episode.module.scss";
-import { usePlayer } from "../../contexts/PlayerContext";
 
 type Episode = {
   id: string;

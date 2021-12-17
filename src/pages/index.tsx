@@ -9,8 +9,9 @@ import { usePlayer } from "../contexts/PlayerContext";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import playGreen from "../../public/play-green.svg";
+
 import styles from "./home.module.scss";
+import iconPlayGreen from "../../public/play-green.svg";
 
 type Episode = {
   id: string;
@@ -68,7 +69,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   onClick={() => playList(episodeList, index)}
                 >
                   <Image
-                    src={playGreen}
+                    src={iconPlayGreen}
                     alt="Tocar episódio"
                     width="50px"
                     height="50px"
@@ -124,7 +125,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                       }
                     >
                       <Image
-                        src={playGreen}
+                        src={iconPlayGreen}
                         alt="Tocar episódio"
                         width="50px"
                         height="50px"

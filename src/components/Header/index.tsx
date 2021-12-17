@@ -1,9 +1,10 @@
 import format from "date-fns/format";
 import ptBR from "date-fns/locale/pt-BR";
 
-import logo from "../../../public/logo.svg";
 import Image from "next/image";
+
 import styles from "./styles.module.scss";
+import logo from "../../../public/logo.svg";
 
 export function Header() {
   const currentDate = format(new Date(), "EEEEEE, d MMMM", {
