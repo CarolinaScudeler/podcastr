@@ -7,9 +7,10 @@ import { convertDurationToTimeString } from "../../utils/convertDurationToTimeSt
 
 import Image from "next/image";
 import Link from "next/link";
-import arrowLeft from "../../../public/arrow-left.svg";
-import play from "../../../public/play.svg";
+import iconArrowLeft from "../../../public/arrow-left.svg";
+import iconPlay from "../../../public/play.svg";
 import styles from "./episode.module.scss";
+import { usePlayer } from "../../contexts/PlayerContext";
 
 type Episode = {
   id: string;
@@ -28,13 +29,15 @@ type EpisodeProps = {
 };
 
 export default function Episode({ episode }: EpisodeProps) {
+  const { play } = usePlayer();
+
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
         <Link href="/">
           <button type="button">
             <Image
-              src={arrowLeft}
+              src={iconArrowLeft}
               alt="Voltar"
               width="7px"
               height="14px"
@@ -50,9 +53,9 @@ export default function Episode({ episode }: EpisodeProps) {
           height={160}
           objectFit="cover"
         />
-        <button type="button">
+        <button type="button" onClick={() => play(episode)}>
           <Image
-            src={play}
+            src={iconPlay}
             alt="Voltar"
             width="24px"
             height="24px"

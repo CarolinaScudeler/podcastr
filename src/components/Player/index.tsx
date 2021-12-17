@@ -1,18 +1,18 @@
-import playing from "../../../public/playing.svg";
-import shuffle from "../../../public/shuffle.svg";
-import playPrevious from "../../../public/play-previous.svg";
-import play from "../../../public/play.svg";
-import pause from "../../../public/pause.svg";
-import playNext from "../../../public/play-next.svg";
-import repeat from "../../../public/repeat.svg";
+import iconPlaying from "../../../public/playing.svg";
+import iconShuffle from "../../../public/shuffle.svg";
+import iconPlayPrevious from "../../../public/play-previous.svg";
+import iconPlay from "../../../public/play.svg";
+import iconPause from "../../../public/pause.svg";
+import iconPlayNext from "../../../public/play-next.svg";
+import iconRepeat from "../../../public/repeat.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { useContext, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Slider from "rc-slider";
 
 import "rc-slider/assets/index.css";
 
-import { PlayerContext } from "../../contexts/PlayerContext";
+import { usePlayer } from "../../contexts/PlayerContext";
 
 export function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -23,7 +23,11 @@ export function Player() {
     isPlaying,
     togglePlay,
     setPlayingState,
-  } = useContext(PlayerContext);
+    playNext,
+    playPrevious,
+    hasNext,
+    hasPrevious,
+  } = usePlayer();
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -42,7 +46,12 @@ export function Player() {
   return (
     <div className={styles.playerContainer}>
       <header>
-        <Image src={playing} alt="Tocando agora" width="32px" height="32px" />
+        <Image
+          src={iconPlaying}
+          alt="Tocando agora"
+          width="32px"
+          height="32px"
+        />
         <strong>Tocando agora</strong>
       </header>
 
@@ -92,11 +101,20 @@ export function Player() {
 
         <div className={styles.buttons}>
           <button type="button" disabled={!episode}>
-            <Image src={shuffle} alt="Embaralhar" width="24px" height="24px" />
-          </button>
-          <button type="button" disabled={!episode}>
             <Image
-              src={playPrevious}
+              src={iconShuffle}
+              alt="Embaralhar"
+              width="24px"
+              height="24px"
+            />
+          </button>
+          <button
+            type="button"
+            onClick={playPrevious}
+            disabled={!episode || !hasPrevious}
+          >
+            <Image
+              src={iconPlayPrevious}
               alt="Tocar anterior"
               width="24px"
               height="24px"
@@ -109,21 +127,25 @@ export function Player() {
             onClick={togglePlay}
           >
             {isPlaying ? (
-              <Image src={pause} alt="Tocar" width="20px" height="20px" />
+              <Image src={iconPause} alt="Tocar" width="20px" height="20px" />
             ) : (
-              <Image src={play} alt="Tocar" width="40px" height="40px" />
+              <Image src={iconPlay} alt="Tocar" width="40px" height="40px" />
             )}
           </button>
-          <button type="button" disabled={!episode}>
+          <button
+            type="button"
+            onClick={playNext}
+            disabled={!episode || !hasNext}
+          >
             <Image
-              src={playNext}
+              src={iconPlayNext}
               alt="Tocar próxima"
               width="24px"
               height="24px"
             />
           </button>
           <button type="button" disabled={!episode}>
-            <Image src={repeat} alt="Repetir" width="24px" height="24px" />
+            <Image src={iconRepeat} alt="Repetir" width="24px" height="24px" />
           </button>
         </div>
       </footer>
