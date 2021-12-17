@@ -2,11 +2,12 @@ import playing from "../../../public/playing.svg";
 import shuffle from "../../../public/shuffle.svg";
 import playPrevious from "../../../public/play-previous.svg";
 import play from "../../../public/play.svg";
+import pause from "../../../public/pause.svg";
 import playNext from "../../../public/play-next.svg";
 import repeat from "../../../public/repeat.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import Slider from "rc-slider";
 
 import "rc-slider/assets/index.css";
@@ -14,7 +15,27 @@ import "rc-slider/assets/index.css";
 import { PlayerContext } from "../../contexts/PlayerContext";
 
 export function Player() {
-  const { episodeList, currentEpisodeIndex } = useContext(PlayerContext);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const {
+    episodeList,
+    currentEpisodeIndex,
+    isPlaying,
+    togglePlay,
+    setPlayingState,
+  } = useContext(PlayerContext);
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      return;
+    }
+
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -59,6 +80,16 @@ export function Player() {
           <span>00:00</span>
         </div>
 
+        {episode && (
+          <audio
+            src={episode.url}
+            ref={audioRef}
+            autoPlay
+            onPlay={() => setPlayingState(true)}
+            onPause={() => setPlayingState(false)}
+          />
+        )}
+
         <div className={styles.buttons}>
           <button type="button" disabled={!episode}>
             <Image src={shuffle} alt="Embaralhar" width="24px" height="24px" />
@@ -75,8 +106,13 @@ export function Player() {
             type="button"
             className={styles.playButton}
             disabled={!episode}
+            onClick={togglePlay}
           >
-            <Image src={play} alt="Tocar" width="40px" height="40px" />
+            {isPlaying ? (
+              <Image src={pause} alt="Tocar" width="20px" height="20px" />
+            ) : (
+              <Image src={play} alt="Tocar" width="40px" height="40px" />
+            )}
           </button>
           <button type="button" disabled={!episode}>
             <Image
