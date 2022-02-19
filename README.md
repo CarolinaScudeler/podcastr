@@ -1,5 +1,8 @@
 <h1 align="center">:headphones: Podcastr</h1>
-<p align="center">Projeto realizado durante a Next Level Week 5 da Rocketseat</p>
+<div align="center">
+  <p>Projeto realizado durante a Next Level Week 5 da Rocketseat</p>
+  <img src="https://imgur.com/btSiBdi.png" width="700px">
+</div>
 
 # 📖 Sobre
 <p>Aplicação com foco em transmitir podcasts e realizar uma leitura prévia sobre eles.</p>
