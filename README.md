@@ -15,6 +15,7 @@
   - ReactJS
   - NextJS
   - TypeScript
+  - SCSS
 - Hospedagem
   - Vercel
 
